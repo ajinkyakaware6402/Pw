@@ -501,6 +501,20 @@
     ::-webkit-scrollbar-thumb:hover {
       background: rgba(255, 255, 255, 0.3);
     }
+
+    /* Mobile responsiveness tweaks */
+    @media (max-width: 768px) {
+      .sidebar-left {
+        display: none; /* In a real app, this would be a toggle menu */
+      }
+      .main-content {
+        margin-left: 0;
+        padding: 1rem;
+      }
+      .header {
+        padding: 0 1rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -570,7 +584,7 @@
   <div class="sidebar-item">▼ Complete Mathematics by Sachi...</div>
 </div>
 
-<div class="main-content">
+<div class="main-content" id="mainContent">
   <div class="forum-title">
     Student Discussion Channel
     <div class="notification-bell">🔔</div>
@@ -647,116 +661,12 @@
       <button class="action-button">↗ Share</button>
     </div>
   </div>
-
-  <div class="message-box">
-    <div class="message-header">
-      <div class="message-author-info">
-        <div class="avatar" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">N</div>
-        <div class="author-details">
-          <div class="author-name">
-            Nikhil <span class="badge my-message-badge">1</span>
-          </div>
-          <div class="author-meta">5 mins ago</div>
-        </div>
-      </div>
-      <div class="message-actions">
-        <button class="action-btn">⋮</button>
-      </div>
-    </div>
-    <div class="message-content">
-      Has anyone completed the differential equations chapter? Need help with integration by parts method
-    </div>
-    <div class="message-footer">
-      <div class="reaction-bar">
-        <div class="reaction">👍</div>
-      </div>
-      <div class="footer-stats">
-        <div class="stat">👁 45</div>
-      </div>
-    </div>
-    <div class="action-buttons">
-      <button class="action-button">🔍 React</button>
-      <button class="action-button">💬 Comment</button>
-      <button class="action-button">↗ Share</button>
-    </div>
-  </div>
-
-  <div class="message-box">
-    <div class="message-header">
-      <div class="message-author-info">
-        <div class="avatar" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">R</div>
-        <div class="author-details">
-          <div class="author-name">
-            Rohan <span class="badge" style="background: rgba(251, 146, 60, 0.9); color: #333;">3</span>
-          </div>
-          <div class="author-meta">8 mins ago</div>
-        </div>
-      </div>
-      <div class="message-actions">
-        <button class="action-btn">⋮</button>
-      </div>
-    </div>
-    <div class="message-content">
-      Can someone explain the logic of logarithms? I'm confused between log and ln properties
-    </div>
-    <div class="message-footer">
-      <div class="reaction-bar">
-        <div class="reaction">👍</div>
-        <div class="reaction">❤️</div>
-      </div>
-      <div class="footer-stats">
-        <div class="stat">2 Comments</div>
-        <div class="stat">👁 89</div>
-      </div>
-    </div>
-    <div class="action-buttons">
-      <button class="action-button">🔍 React</button>
-      <button class="action-button">💬 Comment</button>
-      <button class="action-button">↗ Share</button>
-    </div>
-  </div>
-
-  <div class="message-box">
-    <div class="message-header">
-      <div class="message-author-info">
-        <div class="avatar" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">S</div>
-        <div class="author-details">
-          <div class="author-name">
-            Sneha <span class="badge" style="background: rgba(251, 146, 60, 0.9); color: #333;">5</span>
-          </div>
-          <div class="author-meta">10 mins ago</div>
-        </div>
-      </div>
-      <div class="message-actions">
-        <button class="action-btn">⋮</button>
-      </div>
-    </div>
-    <div class="message-content">
-      Does anyone have the solutions for the organic chemistry problems from chapter 8? Really stuck on mechanism questions
-    </div>
-    <div class="message-footer">
-      <div class="reaction-bar">
-        <div class="reaction">👍</div>
-        <div class="reaction">❤️</div>
-        <div class="reaction">😄</div>
-      </div>
-      <div class="footer-stats">
-        <div class="stat">3 Comments</div>
-        <div class="stat">👁 56</div>
-      </div>
-    </div>
-    <div class="action-buttons">
-      <button class="action-button">🔍 React</button>
-      <button class="action-button">💬 Comment</button>
-      <button class="action-button">↗ Share</button>
-    </div>
-  </div>
-
 </div>
 
-<button class="add-button">+</button>
+<button class="add-button" id="addNewMessageBtn">+</button>
 
 <script>
+  // Password Logic
   const CORRECT_PASSWORD = '2525';
   const passwordModal = document.getElementById('passwordModal');
   const passwordInput = document.getElementById('passwordInput');
@@ -765,7 +675,6 @@
 
   function checkPassword() {
     const input = passwordInput.value;
-    
     if (input === CORRECT_PASSWORD) {
       passwordModal.classList.add('hidden');
       passwordInput.value = '';
@@ -774,7 +683,6 @@
       passwordError.classList.add('show');
       passwordInput.value = '';
       passwordInput.focus();
-      
       setTimeout(() => {
         passwordError.classList.remove('show');
       }, 3000);
@@ -782,35 +690,69 @@
   }
 
   passwordBtn.addEventListener('click', checkPassword);
-
   passwordInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      checkPassword();
+    if (e.key === 'Enter') checkPassword();
+  });
+
+  // Working Add Message Functionality (PC & Mobile Friendly)
+  const addBtn = document.getElementById('addNewMessageBtn');
+  const mainContent = document.getElementById('mainContent');
+
+  addBtn.addEventListener('click', function() {
+    // Prompt allows typing directly on any device
+    const userMessage = prompt("Type your message:");
+
+    if (userMessage && userMessage.trim() !== "") {
+      const newPost = document.createElement('div');
+      newPost.className = 'message-box';
+      
+      // Matches your existing style precisely
+      newPost.innerHTML = `
+        <div class="message-header">
+          <div class="message-author-info">
+            <div class="avatar" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);">U</div>
+            <div class="author-details">
+              <div class="author-name">
+                You <span class="badge my-message-badge">1</span>
+              </div>
+              <div class="author-meta">Just now</div>
+            </div>
+          </div>
+          <div class="message-actions">
+            <button class="action-btn">⋮</button>
+          </div>
+        </div>
+        <div class="message-content">${userMessage}</div>
+        <div class="message-footer">
+          <div class="reaction-bar">
+            <div class="reaction">👍</div>
+          </div>
+          <div class="footer-stats">
+            <div class="stat">👁 1</div>
+          </div>
+        </div>
+        <div class="action-buttons">
+          <button class="action-button">🔍 React</button>
+          <button class="action-button">💬 Comment</button>
+          <button class="action-button">↗ Share</button>
+        </div>
+      `;
+
+      // Inserts the message at the top of the feed
+      const title = document.querySelector('.forum-title');
+      title.insertAdjacentElement('afterend', newPost);
+      
+      // Auto-scroll to show the new message
+      newPost.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   });
 
-  passwordInput.focus();
-
+  // Sidebar selection logic
   const sidebarItems = document.querySelectorAll('.sidebar-item:not(.header-item)');
   sidebarItems.forEach(item => {
     item.addEventListener('click', function() {
       sidebarItems.forEach(i => i.classList.remove('active'));
       this.classList.add('active');
-    });
-  });
-
-  document.querySelectorAll('.action-button').forEach(btn => {
-    btn.addEventListener('click', function() {
-      console.log('Action clicked:', this.textContent);
-    });
-  });
-
-  document.querySelectorAll('.reaction').forEach(btn => {
-    btn.addEventListener('click', function() {
-      this.style.transform = 'scale(1.2)';
-      setTimeout(() => {
-        this.style.transform = 'scale(1)';
-      }, 200);
     });
   });
 </script>
