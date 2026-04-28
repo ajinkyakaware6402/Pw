@@ -16,9 +16,10 @@
       background-color: #0f0f0f;
       color: #ffffff;
       height: 100%;
+      overflow: hidden; /* Prevent double scrollbars */
     }
 
-    /* Password Modal */
+    /* Password Modal Styles */
     .password-modal {
       position: fixed;
       top: 0;
@@ -46,6 +47,40 @@
       width: 90%;
     }
 
+    .password-logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      background: white;
+      border-radius: 50%;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .password-logo svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .password-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .password-subtitle {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 2rem;
+    }
+
+    .password-input-group {
+      margin-bottom: 1.5rem;
+    }
+
     .password-input {
       width: 100%;
       padding: 0.9rem 1rem;
@@ -55,7 +90,7 @@
       color: white;
       font-size: 16px;
       text-align: center;
-      margin-bottom: 1rem;
+      letter-spacing: 0.2em;
     }
 
     .password-btn {
@@ -65,8 +100,10 @@
       border: none;
       border-radius: 8px;
       color: white;
+      font-size: 15px;
       font-weight: 600;
       cursor: pointer;
+      transition: all 0.3s;
     }
 
     .password-error {
@@ -76,7 +113,11 @@
       display: none;
     }
 
-    /* Layout */
+    .password-error.show {
+      display: block;
+    }
+
+    /* Layout Styles */
     .header {
       position: fixed;
       top: 0;
@@ -92,46 +133,96 @@
       z-index: 100;
     }
 
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
     .logo {
-      width: 35px;
-      height: 35px;
+      width: 40px;
+      height: 40px;
       background: white;
       border-radius: 50%;
+      padding: 2px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #333;
-      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .header-title {
+      font-size: 16px;
+      font-weight: 500;
+      color: white;
+    }
+
+    .exit-link {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
 
     .sidebar-left {
       width: 280px;
       background: #0f0f0f;
       border-right: 1px solid rgba(255, 255, 255, 0.1);
+      overflow-y: auto;
       padding-top: 80px;
+      padding-bottom: 2rem;
       position: fixed;
       height: 100vh;
+      left: 0;
+      top: 0;
+    }
+
+    .sidebar-section-title {
+      padding: 1.2rem 1.5rem 0.6rem;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 0.5px;
     }
 
     .sidebar-item {
       padding: 0.9rem 1.5rem;
+      font-size: 14px;
       color: rgba(255, 255, 255, 0.7);
       cursor: pointer;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
     }
 
     .sidebar-item.active {
-      background: rgba(99, 102, 241, 0.2);
-      border-left: 3px solid #6366f1;
+      border-left-color: #6366f1;
       color: white;
+      background: rgba(99, 102, 241, 0.2);
     }
 
     .main-content {
       margin-left: 280px;
       margin-top: 60px;
+      flex: 1;
+      overflow-y: auto;
       padding: 2rem;
+      height: calc(100vh - 60px);
     }
 
-    /* Messages */
+    .forum-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Message Component Styles */
     .message-box {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -140,60 +231,80 @@
       margin-bottom: 1.5rem;
     }
 
-    .avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #6366f1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 10px;
-    }
-
     .message-header {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       margin-bottom: 1rem;
+    }
+
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      margin-right: 0.75rem;
+    }
+
+    .author-name {
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #6366f1;
+      color: white;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      font-size: 10px;
+      margin-left: 0.3rem;
     }
 
     .message-content {
       color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
       margin-bottom: 1rem;
     }
 
     .action-buttons {
       display: flex;
-      gap: 1rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      gap: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
       padding-top: 1rem;
     }
 
     .action-button {
-      background: none;
+      background: transparent;
       border: none;
       color: rgba(255, 255, 255, 0.6);
       cursor: pointer;
+      font-size: 13px;
     }
 
     .add-button {
       position: fixed;
       bottom: 2rem;
       right: 2rem;
-      width: 60px;
-      height: 60px;
+      width: 56px;
+      height: 56px;
       background: #6366f1;
-      border-radius: 50%;
       border: none;
+      border-radius: 50%;
       color: white;
-      font-size: 30px;
+      font-size: 24px;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    }
-
-    .exit-link {
-      color: rgba(255, 255, 255, 0.6);
-      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      z-index: 50;
     }
 
     @media (max-width: 768px) {
@@ -206,97 +317,115 @@
 
 <div class="password-modal" id="passwordModal">
   <div class="password-box">
-    <h2>PW Community</h2>
-    <p style="margin-bottom: 1.5rem; color: gray;">Enter password</p>
-    <input type="password" id="passwordInput" class="password-input" placeholder="Password">
-    <div id="passwordError" class="password-error">Incorrect Password</div>
-    <button class="password-btn" onclick="checkPassword()">Enter</button>
+    <div class="password-logo">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="95" fill="white" stroke="#333" stroke-width="8"/>
+        <text x="70" y="125" font-family="Arial" font-size="72" font-weight="bold" fill="#333">P</text>
+        <text x="110" y="125" font-family="Arial" font-size="72" font-weight="bold" fill="#333">W</text>
+      </svg>
+    </div>
+    <div class="password-title">Physics Wallah Community</div>
+    <div class="password-input-group">
+      <input type="password" class="password-input" id="passwordInput" placeholder="Password">
+      <div class="password-error" id="passwordError">Incorrect password.</div>
+    </div>
+    <button class="password-btn" id="passwordBtn">Enter</button>
   </div>
 </div>
 
 <div class="header">
-  <div style="display: flex; align-items: center; gap: 10px;">
-    <div class="logo">PW</div>
+  <div class="header-left">
+    <div class="logo">
+      <svg viewBox="0 0 200 200" width="30">
+        <circle cx="100" cy="100" r="95" fill="white"/>
+        <text x="50%" y="65%" text-anchor="middle" font-size="90" font-weight="bold" fill="#333">PW</text>
+      </svg>
+    </div>
     <div class="header-title">Physics Wallah Community</div>
   </div>
   <a href="https://www.pw.live/study-v2/study" class="exit-link" target="pw_study">← Exit</a>
 </div>
 
 <div class="sidebar-left">
-  <div class="sidebar-item active">💬 Student Discussion</div>
+  <div class="sidebar-section-title">Batch</div>
+  <div class="sidebar-item header-item">Lakshya JEE 2027</div>
+  <div class="sidebar-item active">💬 Student Discussion Channel</div>
+  <div class="sidebar-item">👨‍🏫 Teacher Feeds</div>
 </div>
 
 <div class="main-content" id="mainContent">
-  <h2 style="margin-bottom: 2rem;">Student Discussion Channel</h2>
-  <div id="messageContainer"></div> </div>
+  <div class="forum-title">Student Discussion Channel</div>
+  <div id="messageFeed"></div> </div>
 
-<button class="add-button" id="addBtn">+</button>
+<button class="add-button" id="mainAddBtn">+</button>
 
 <script>
-  const PASS = '2525';
-  const container = document.getElementById('messageContainer');
+  const CORRECT_PASSWORD = '2525';
+  const passwordModal = document.getElementById('passwordModal');
+  const passwordInput = document.getElementById('passwordInput');
+  const passwordBtn = document.getElementById('passwordBtn');
+  const feed = document.getElementById('messageFeed');
+  const addBtn = document.getElementById('mainAddBtn');
 
-  // Check Password
+  // Password Verification
   function checkPassword() {
-    const input = document.getElementById('passwordInput').value;
-    if(input === PASS) {
-      document.getElementById('passwordModal').classList.add('hidden');
+    if (passwordInput.value === CORRECT_PASSWORD) {
+      passwordModal.classList.add('hidden');
     } else {
-      document.getElementById('passwordError').style.display = 'block';
+      document.getElementById('passwordError').classList.add('show');
     }
   }
 
-  // SAVE DATA LOGIC
-  function saveMessage(text) {
-    // 1. Get existing messages from PC storage
-    let messages = JSON.parse(localStorage.getItem('my_messages')) || [];
-    
-    // 2. Add new message to the list
-    const newMsg = { text: text, date: new Date().toLocaleTimeString() };
-    messages.unshift(newMsg); // Put newest at the top
-    
-    // 3. Save the updated list back to the PC
-    localStorage.setItem('my_messages', JSON.stringify(messages));
-    
-    // 4. Update the screen
-    displayMessages();
+  passwordBtn.addEventListener('click', checkPassword);
+  passwordInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') checkPassword(); });
+
+  // SAVE AND LOAD LOGIC (PC Storage)
+  function loadMessages() {
+    const saved = JSON.parse(localStorage.getItem('pw_messages')) || [];
+    feed.innerHTML = '';
+    saved.forEach(msg => renderMessage(msg));
   }
 
-  function displayMessages() {
-    container.innerHTML = ''; // Clear screen
-    const messages = JSON.parse(localStorage.getItem('my_messages')) || [];
-    
-    messages.forEach(msg => {
-      const div = document.createElement('div');
-      div.className = 'message-box';
-      div.innerHTML = `
-        <div class="message-header">
+  function renderMessage(msg) {
+    const div = document.createElement('div');
+    div.className = 'message-box';
+    div.innerHTML = `
+      <div class="message-header">
+        <div style="display:flex; align-items:center;">
           <div class="avatar">U</div>
-          <div>
-            <strong>You</strong><br>
-            <small style="color:gray">${msg.date}</small>
-          </div>
+          <div class="author-name">You <span class="badge">Student</span></div>
         </div>
-        <div class="message-content">${msg.text}</div>
-        <div class="action-buttons">
-          <button class="action-button">💬 Comment</button>
-          <button class="action-button">↗ Share</button>
-        </div>
-      `;
-      container.appendChild(div);
-    });
+        <div style="color:gray; font-size:11px;">${msg.date}</div>
+      </div>
+      <div class="message-content">${msg.text}</div>
+      <div class="action-buttons">
+        <button class="action-button">💬 Comment</button>
+        <button class="action-button">↗ Share</button>
+      </div>
+    `;
+    feed.prepend(div); // Newest on top
   }
 
-  // Handle + Button
-  document.getElementById('addBtn').addEventListener('click', () => {
+  addBtn.addEventListener('click', () => {
     const text = prompt("Type your message:");
-    if(text && text.trim() !== "") {
-      saveMessage(text);
+    if (text && text.trim() !== "") {
+      const msg = {
+        text: text,
+        date: new Date().toLocaleString()
+      };
+      
+      // Update Storage
+      const current = JSON.parse(localStorage.getItem('pw_messages')) || [];
+      current.push(msg);
+      localStorage.setItem('pw_messages', JSON.stringify(current));
+      
+      renderMessage(msg);
+      document.getElementById('mainContent').scrollTo({ top: 0, behavior: 'smooth' });
     }
   });
 
-  // Load saved data when the page opens
-  window.onload = displayMessages;
+  // Init
+  window.onload = loadMessages;
 </script>
 
 </body>
