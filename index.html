@@ -16,16 +16,13 @@
       background-color: #0f0f0f;
       color: #ffffff;
       height: 100%;
-      overflow: hidden; /* Prevent double scrollbars */
+      overflow: hidden;
     }
 
-    /* Password Modal Styles */
+    /* Password Modal */
     .password-modal {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0, 0, 0, 0.95);
       display: flex;
       align-items: center;
@@ -33,9 +30,7 @@
       z-index: 9999;
     }
 
-    .password-modal.hidden {
-      display: none;
-    }
+    .password-modal.hidden { display: none; }
 
     .password-box {
       background: rgba(255, 255, 255, 0.08);
@@ -47,50 +42,15 @@
       width: 90%;
     }
 
-    .password-logo {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 1.5rem;
-      background: white;
-      border-radius: 50%;
-      padding: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .password-logo svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    .password-title {
-      font-size: 24px;
-      font-weight: 600;
-      color: white;
-      margin-bottom: 0.5rem;
-    }
-
-    .password-subtitle {
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.6);
-      margin-bottom: 2rem;
-    }
-
-    .password-input-group {
-      margin-bottom: 1.5rem;
-    }
-
     .password-input {
       width: 100%;
-      padding: 0.9rem 1rem;
+      padding: 0.9rem;
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 8px;
       color: white;
-      font-size: 16px;
       text-align: center;
-      letter-spacing: 0.2em;
+      margin-bottom: 1rem;
     }
 
     .password-btn {
@@ -100,29 +60,14 @@
       border: none;
       border-radius: 8px;
       color: white;
-      font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s;
     }
 
-    .password-error {
-      color: #ef4444;
-      font-size: 13px;
-      margin-top: 1rem;
-      display: none;
-    }
-
-    .password-error.show {
-      display: block;
-    }
-
-    /* Layout Styles */
+    /* Layout */
     .header {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: 60px;
       background: #0f0f0f;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -133,183 +78,138 @@
       z-index: 100;
     }
 
-    .header-left {
+    .logo-container {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 10px;
     }
 
-    .logo {
-      width: 40px;
-      height: 40px;
+    .logo-circle {
+      width: 35px;
+      height: 35px;
       background: white;
       border-radius: 50%;
-      padding: 2px;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .header-title {
-      font-size: 16px;
-      font-weight: 500;
-      color: white;
+      color: #333;
+      font-weight: bold;
     }
 
     .exit-link {
       color: rgba(255, 255, 255, 0.6);
       text-decoration: none;
       font-size: 13px;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
     }
 
     .sidebar-left {
       width: 280px;
       background: #0f0f0f;
       border-right: 1px solid rgba(255, 255, 255, 0.1);
-      overflow-y: auto;
-      padding-top: 80px;
-      padding-bottom: 2rem;
+      padding-top: 70px;
       position: fixed;
       height: 100vh;
-      left: 0;
-      top: 0;
+      overflow-y: auto;
     }
 
     .sidebar-section-title {
       padding: 1.2rem 1.5rem 0.6rem;
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 11px;
+      font-weight: 700;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.5);
-      letter-spacing: 0.5px;
+      color: rgba(255, 255, 255, 0.4);
+      letter-spacing: 1px;
     }
 
     .sidebar-item {
-      padding: 0.9rem 1.5rem;
-      font-size: 14px;
+      padding: 0.8rem 1.5rem;
+      font-size: 13px;
       color: rgba(255, 255, 255, 0.7);
       cursor: pointer;
       border-left: 3px solid transparent;
-      transition: all 0.2s;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
+    .sidebar-item:hover { background: rgba(255, 255, 255, 0.05); }
+
     .sidebar-item.active {
+      background: rgba(99, 102, 241, 0.15);
       border-left-color: #6366f1;
       color: white;
-      background: rgba(99, 102, 241, 0.2);
     }
 
     .main-content {
       margin-left: 280px;
       margin-top: 60px;
-      flex: 1;
+      height: calc(100vh - 60px);
       overflow-y: auto;
       padding: 2rem;
-      height: calc(100vh - 60px);
     }
 
-    .forum-title {
-      font-size: 20px;
-      font-weight: 600;
-      color: white;
-      margin-bottom: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    /* Message Component Styles */
+    /* Messages */
     .message-box {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 8px;
-      padding: 1.5rem;
+      padding: 1.2rem;
       margin-bottom: 1.5rem;
     }
 
     .message-header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
     }
 
     .avatar {
-      width: 44px;
-      height: 44px;
+      width: 35px;
+      height: 35px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      background: #6366f1;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
       font-weight: bold;
-      margin-right: 0.75rem;
-    }
-
-    .author-name {
-      color: white;
-      font-weight: 600;
-      font-size: 14px;
-    }
-
-    .badge {
-      display: inline-block;
-      background: #6366f1;
-      color: white;
-      padding: 0.1rem 0.4rem;
-      border-radius: 4px;
-      font-size: 10px;
-      margin-left: 0.3rem;
-    }
-
-    .message-content {
-      color: rgba(255, 255, 255, 0.8);
-      line-height: 1.6;
-      margin-bottom: 1rem;
+      margin-right: 10px;
     }
 
     .action-buttons {
       display: flex;
       gap: 1.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      margin-top: 1rem;
       padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .action-button {
       background: transparent;
       border: none;
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255, 255, 255, 0.5);
       cursor: pointer;
-      font-size: 13px;
+      font-size: 12px;
     }
 
     .add-button {
       position: fixed;
       bottom: 2rem;
       right: 2rem;
-      width: 56px;
-      height: 56px;
+      width: 55px;
+      height: 55px;
       background: #6366f1;
-      border: none;
       border-radius: 50%;
+      border: none;
       color: white;
       font-size: 24px;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
       z-index: 50;
     }
 
     @media (max-width: 768px) {
       .sidebar-left { display: none; }
-      .main-content { margin-left: 0; padding: 1rem; }
+      .main-content { margin-left: 0; }
     }
   </style>
 </head>
@@ -317,115 +217,129 @@
 
 <div class="password-modal" id="passwordModal">
   <div class="password-box">
-    <div class="password-logo">
-      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="100" cy="100" r="95" fill="white" stroke="#333" stroke-width="8"/>
-        <text x="70" y="125" font-family="Arial" font-size="72" font-weight="bold" fill="#333">P</text>
-        <text x="110" y="125" font-family="Arial" font-size="72" font-weight="bold" fill="#333">W</text>
-      </svg>
-    </div>
-    <div class="password-title">Physics Wallah Community</div>
-    <div class="password-input-group">
-      <input type="password" class="password-input" id="passwordInput" placeholder="Password">
-      <div class="password-error" id="passwordError">Incorrect password.</div>
-    </div>
-    <button class="password-btn" id="passwordBtn">Enter</button>
+    <h2>PW Community</h2>
+    <input type="password" id="passwordInput" class="password-input" placeholder="Enter Password">
+    <button class="password-btn" onclick="checkAuth()">Enter</button>
   </div>
 </div>
 
 <div class="header">
-  <div class="header-left">
-    <div class="logo">
-      <svg viewBox="0 0 200 200" width="30">
-        <circle cx="100" cy="100" r="95" fill="white"/>
-        <text x="50%" y="65%" text-anchor="middle" font-size="90" font-weight="bold" fill="#333">PW</text>
-      </svg>
-    </div>
-    <div class="header-title">Physics Wallah Community</div>
+  <div class="logo-container">
+    <div class="logo-circle">PW</div>
+    <div style="font-weight: 500;">Physics Wallah Community</div>
   </div>
   <a href="https://www.pw.live/study-v2/study" class="exit-link" target="pw_study">← Exit</a>
 </div>
 
 <div class="sidebar-left">
   <div class="sidebar-section-title">Batch</div>
-  <div class="sidebar-item header-item">Lakshya JEE 2027</div>
-  <div class="sidebar-item active">💬 Student Discussion Channel</div>
-  <div class="sidebar-item">👨‍🏫 Teacher Feeds</div>
+  <div class="sidebar-item" onclick="switchSection('info')">Lakshya JEE 2027</div>
+  <div class="sidebar-item" onclick="switchSection('profile')">Profile</div>
+  <div class="sidebar-item active" id="chatTab" onclick="switchSection('chat')">💬 Student Discussion Channel</div>
+  <div class="sidebar-item" onclick="switchSection('teachers')">👨‍🏫 Teacher Feeds</div>
+
+  <div class="sidebar-section-title">Other batches</div>
+  <div class="sidebar-item" onclick="switchSection('doubt')">▼ Lakshya JEE 2026</div>
+  <div class="sidebar-item" onclick="switchSection('doubt')">▼ Lakshya JEE 2.0 2026</div>
+  <div class="sidebar-item" onclick="switchSection('doubt')">▼ Lakshya JEE 3.0 2026</div>
+  <div class="sidebar-item" onclick="switchSection('doubt')">▼ PARISHRAM 2027 (Class 12th)</div>
+  <div class="sidebar-item" onclick="switchSection('doubt')">▼ 11th Jee Restart 2026</div>
+  <div class="sidebar-item" onclick="switchSection('doubt')">▼ MANZIL JEE 2026</div>
+  <div class="sidebar-item" onclick="switchSection('doubt')">▼ Complete Mathematics by Sachin Sir</div>
 </div>
 
-<div class="main-content" id="mainContent">
-  <div class="forum-title">Student Discussion Channel</div>
-  <div id="messageFeed"></div> </div>
+<div class="main-content" id="mainDisplay">
+  <h2 id="pageTitle" style="margin-bottom: 1.5rem;">Student Discussion Channel</h2>
+  <div id="contentArea"></div>
+</div>
 
-<button class="add-button" id="mainAddBtn">+</button>
+<button class="add-button" id="addBtn">+</button>
 
 <script>
-  const CORRECT_PASSWORD = '2525';
-  const passwordModal = document.getElementById('passwordModal');
-  const passwordInput = document.getElementById('passwordInput');
-  const passwordBtn = document.getElementById('passwordBtn');
-  const feed = document.getElementById('messageFeed');
-  const addBtn = document.getElementById('mainAddBtn');
+  const PASS = '2525';
+  let currentMode = 'chat';
 
-  // Password Verification
-  function checkPassword() {
-    if (passwordInput.value === CORRECT_PASSWORD) {
-      passwordModal.classList.add('hidden');
-    } else {
-      document.getElementById('passwordError').classList.add('show');
+  function checkAuth() {
+    if(document.getElementById('passwordInput').value === PASS) {
+      document.getElementById('passwordModal').classList.add('hidden');
     }
   }
 
-  passwordBtn.addEventListener('click', checkPassword);
-  passwordInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') checkPassword(); });
+  function switchSection(mode) {
+    currentMode = mode;
+    const items = document.querySelectorAll('.sidebar-item');
+    items.forEach(i => i.classList.remove('active'));
+    event.currentTarget.classList.add('active');
 
-  // SAVE AND LOAD LOGIC (PC Storage)
-  function loadMessages() {
-    const saved = JSON.parse(localStorage.getItem('pw_messages')) || [];
-    feed.innerHTML = '';
-    saved.forEach(msg => renderMessage(msg));
+    const title = document.getElementById('pageTitle');
+    const addBtn = document.getElementById('addBtn');
+    
+    if(mode === 'chat') {
+      title.innerText = "Student Discussion Channel";
+      addBtn.style.display = 'flex';
+      loadChats();
+    } else {
+      title.innerText = "Doubt/Feed Section";
+      addBtn.style.display = 'none';
+      loadDoubts();
+    }
   }
 
-  function renderMessage(msg) {
-    const div = document.createElement('div');
-    div.className = 'message-box';
-    div.innerHTML = `
-      <div class="message-header">
-        <div style="display:flex; align-items:center;">
-          <div class="avatar">U</div>
-          <div class="author-name">You <span class="badge">Student</span></div>
+  function loadChats() {
+    const container = document.getElementById('contentArea');
+    container.innerHTML = '';
+    const saved = JSON.parse(localStorage.getItem('user_chats')) || [];
+    saved.forEach(msg => {
+      container.innerHTML += createBox("You", msg.text, msg.time);
+    });
+  }
+
+  function loadDoubts() {
+    const container = document.getElementById('contentArea');
+    const doubts = [
+      "Is rotation chapter important for JEE Mains?",
+      "Can anyone explain the shortcut for integration by parts?",
+      "When will the next mock test results be declared?",
+      "Backlog complete karne ki strategy bata do koi...",
+      "Organic Chemistry ke reaction mechanism yaad nahi ho rahe."
+    ];
+    container.innerHTML = '';
+    doubts.forEach(d => {
+      container.innerHTML += createBox("Student", d, "Recent");
+    });
+  }
+
+  function createBox(author, text, time) {
+    return `
+      <div class="message-box">
+        <div class="message-header">
+          <div class="avatar">${author[0]}</div>
+          <div>
+            <strong>${author}</strong><br>
+            <small style="color:gray">${time}</small>
+          </div>
         </div>
-        <div style="color:gray; font-size:11px;">${msg.date}</div>
-      </div>
-      <div class="message-content">${msg.text}</div>
-      <div class="action-buttons">
-        <button class="action-button">💬 Comment</button>
-        <button class="action-button">↗ Share</button>
+        <div style="color: rgba(255,255,255,0.8);">${text}</div>
+        <div class="action-buttons">
+          <button class="action-button">💬 Comment</button>
+          <button class="action-button">↗ Share</button>
+        </div>
       </div>
     `;
-    feed.prepend(div); // Newest on top
   }
 
-  addBtn.addEventListener('click', () => {
-    const text = prompt("Type your message:");
-    if (text && text.trim() !== "") {
-      const msg = {
-        text: text,
-        date: new Date().toLocaleString()
-      };
-      
-      // Update Storage
-      const current = JSON.parse(localStorage.getItem('pw_messages')) || [];
-      current.push(msg);
-      localStorage.setItem('pw_messages', JSON.stringify(current));
-      
-      renderMessage(msg);
-      document.getElementById('mainContent').scrollTo({ top: 0, behavior: 'smooth' });
+  document.getElementById('addBtn').addEventListener('click', () => {
+    const txt = prompt("Enter your message:");
+    if(txt) {
+      const chatObj = { text: txt, time: new Date().toLocaleTimeString() };
+      const saved = JSON.parse(localStorage.getItem('user_chats')) || [];
+      saved.unshift(chatObj);
+      localStorage.setItem('user_chats', JSON.stringify(saved));
+      loadChats();
     }
   });
 
-  // Init
-  window.onload = loadMessages;
+  window.onload = loadChats;
 </script>
 
 </body>
